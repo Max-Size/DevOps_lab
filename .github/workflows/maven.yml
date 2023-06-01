@@ -28,11 +28,10 @@ jobs:
    needs: build_linux
    runs-on: ubuntu-latest
    steps:
-     - name: uploading artifacts
-       uses: actions/upload-artifact@v3
+     - uses: actions/download-artifact@v3
        with:
          name: Package
-     - name: send .jar to telegram bot
+     - name: send telegram message on push
        uses: appleboy/telegram-action@master
        with:
           to: ${{ secrets.TELEGRAM_TO }}
