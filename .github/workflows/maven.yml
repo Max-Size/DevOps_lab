@@ -7,26 +7,32 @@ jobs:
    name: build for Linux
    runs-on: ubuntu-latest
    steps:
-     - uses: actions/checkout@v3
-     - uses: actions/setup-java@v3
-       with:
-         java-version: '19'
-         distribution: 'temurin'
-     - run: mvn --batch-mode --update-snapshots verify
-     - run: mkdir staging && cp target/*.jar staging
-     - uses: actions/upload-artifact@v3
-       with:
-         name: Package
-         path: staging
+    - name: Getting repostitory code
+      uses: actions/checkout@v3
+    - name: Settupping Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '19'
+        distribution: 'temurin'
+    - name: Building with Maven
+      run: mvn --batch-mode --update-snapshots verify
+    - name: Creating directory for the artifacts
+      run: mkdir staging && cp target/*.jar staging
+    - name: uploading artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Package
+        path: staging
   send_telegram:
    name: send telegram
    needs: build_linux
    runs-on: ubuntu-latest
    steps:
-     - uses: actions/download-artifact@v3
+     - name: uploading artifacts
+       uses: actions/upload-artifact@v3
        with:
          name: Package
-     - name: send telegram message on push
+     - name: send .jar to telegram bot
        uses: appleboy/telegram-action@master
        with:
           to: ${{ secrets.TELEGRAM_TO }}
