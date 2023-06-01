@@ -20,7 +20,9 @@ jobs:
           distribution: 'adopt'
           java-version: '19'
           java-package: jdk
-    - name: Build and test project
+    - name: Print ls
+      run: ls
+    - name: Build and test project  
       working-directory: github-actions-java-maven
       run: mvn -B verify
     - name: Upload Maven build artifact
