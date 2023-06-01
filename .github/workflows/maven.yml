@@ -1,4 +1,4 @@
-name: Build sample Java Maven project
+name: Build Java project with Maven
  
 on: [push, pull_request]
  
@@ -22,9 +22,6 @@ jobs:
    needs: build_linux
    runs-on: ubuntu-latest
    steps:
-     - uses: actions/download-artifact@v3
-       with:
-         name: Package
      - name: send telegram message on push
        uses: appleboy/telegram-action@master
        with:
@@ -32,10 +29,4 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           document: DevOps_lab-1.0-SNAPSHOT.jar
           message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-
-            Repository: ${{ github.repository }}
-
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-            Also below you can see the build file:
+            Below you can see the build file:
