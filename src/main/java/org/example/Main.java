@@ -5,5 +5,6 @@ public class Main {
         Person someone = new Person();
         someone.get_info();
         someone.print_info();
+        //checking commit
     }
 }
