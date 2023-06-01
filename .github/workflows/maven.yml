@@ -25,5 +25,5 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: java-app
-        path: main.jar
+        name: artifact.jar
+        path: github-actions-java-maven/target/github-actions-java-maven.jar
