@@ -3,7 +3,7 @@ name: Build sample Java Maven project
 on: [push, pull_request]
  
 jobs:
-  build:
+  build_linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,3 +17,24 @@ jobs:
         with:
           name: Package
           path: staging
+  send_telegram:
+   name: send telegram
+   needs: build_linux
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/download-artifact@v3
+       with:
+         name: Package
+     - name: send telegram message on push
+       uses: appleboy/telegram-action@master
+       with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          document: hi_*.o
+          message: |
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+
+            Repository: ${{ github.repository }}
+
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
