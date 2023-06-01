@@ -38,3 +38,4 @@ jobs:
             Repository: ${{ github.repository }}
 
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            Also below you can see the build file:
