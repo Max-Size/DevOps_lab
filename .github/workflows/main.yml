@@ -2,6 +2,7 @@ name: First Workflow
 on: [push, pull_request, workflow_dispatch]
 jobs:
   simple_print:
+    name: first job
     runs-on: ubuntu-latest
     steps:
       - name: print one line
