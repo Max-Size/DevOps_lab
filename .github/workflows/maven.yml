@@ -7,9 +7,9 @@ jobs:
    name: build for Linux
    runs-on: ubuntu-latest
    steps:
-    - name: Getting repostitory code
+    - name: Getting repository code
       uses: actions/checkout@v3
-    - name: Settupping Java
+    - name: Sett-upping Java
       uses: actions/setup-java@v3
       with:
         java-version: '19'
