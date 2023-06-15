@@ -20,7 +20,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          image: maxsizen/devops_lab
           context: .
           file: ./Dockerfile
           push: true
