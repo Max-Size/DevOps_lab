@@ -24,3 +24,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: maxsizen/devops_lab:latest
+      - name: Start container
+        run: |
+          docker image rm maxsizen/devops_lab
+          docker run maxsizen/devops_lab
