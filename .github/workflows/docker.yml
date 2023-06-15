@@ -3,7 +3,15 @@ name: ci
 on: [push,workflow_dispatch]
 
 jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--set-exit-if-changed"
   docker:
+    needs: formatting
     runs-on: self-hosted
     steps:
       - name: Checkout
