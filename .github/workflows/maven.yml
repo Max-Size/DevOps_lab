@@ -1,6 +1,6 @@
 name: Build Java project with Maven
  
-on: [push, pull_request, workflow_dispatch]
+on: workflow_dispatch
  
 jobs:
   build_linux:

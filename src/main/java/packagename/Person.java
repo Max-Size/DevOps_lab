@@ -1,8 +1,7 @@
-package org.example;
+package packagename;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Scanner;
 import java.time.DateTimeException;
 
 public class Person {
@@ -23,14 +22,10 @@ public class Person {
         this.patronymic = patronymic;
         this.birthday=birthday;
     }
-    public void get_info(){
-        System.out.println("Please input the data in the following format:");
-        System.out.println("Surname Name SecondName dd.MM.yyyy");
-        Scanner in = new Scanner(System.in);
-        String[] info = in.nextLine().split(" ");
-        in.close();
+    public void get_info(String[] info){
         try {
             surname = info[0]; name = info[1]; patronymic = info[2]; birthday = info[3];
+            System.out.println("Here is a person " + surname + " " + name + " " + patronymic+". Birthday: " + birthday);
         }
         catch (IndexOutOfBoundsException e){
             System.out.println("You have inputted data in wrong format");
