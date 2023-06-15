@@ -26,5 +26,5 @@ jobs:
           tags: maxsizen/devops_lab:latest
       - name: Start container
         run: |
-          docker image rm maxsizen/devops_lab
+          docker pull maxsizen/devops_lab:latest
           docker run maxsizen/devops_lab
